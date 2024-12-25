@@ -1,13 +1,34 @@
 <?php
-
 /**
- * Class for declaring the importer used in the Themebeez Demo Importer plugin
+ * Main class definition for data importer.
+ *
+ * @since 1.0.0
+ *
+ * @package Themebeez_Toolkit
  */
 
+/**
+ * Class - TT_Importer_Main.
+ *
+ * Class for declaring the importer used in the Themebeez Demo Importer plugin.
+ *
+ * @since 1.0.0
+ */
 class TT_Importer_Main {
 
+	/**
+	 * WordPress Importer.
+	 *
+	 * @var object $importer
+	 */
 	private $importer;
 
+	/**
+	 * Property initialization.
+	 *
+	 * @param array  $importer_options Importer options.
+	 * @param string $logger Logger.
+	 */
 	public function __construct( $importer_options = array(), $logger = null ) {
 
 		// Include files that are needed for WordPress Importer v2.
@@ -31,7 +52,7 @@ class TT_Importer_Main {
 		defined( 'WP_LOAD_IMPORTERS' ) || define( 'WP_LOAD_IMPORTERS', true );
 
 		if ( ! class_exists( 'WP_Importer' ) ) {
-			
+
 			require ABSPATH . '/wp-admin/includes/class-wp-importer.php';
 		}
 	}

@@ -1,23 +1,37 @@
 <?php
+/**
+ * Application of filter hooks for extending WordPress menu editor.
+ *
+ * @since 1.1.5
+ *
+ * @package Themebeez_Toolkit
+ */
 
-if ( ! class_exists( 'Simple_Mega_Menu_Walker_Filter' ) ) :
+if ( ! class_exists( 'Simple_Mega_Menu_Walker_Filter' ) ) {
 	/**
-	* Menu Item Custom Fields Loader
-	*/
+	 * Class - Simple_Mega_Menu_Walker_Filter.
+	 * Loads custom menu fields.
+	 *
+	 * @since 1.1.5
+	 */
 	class Simple_Mega_Menu_Walker_Filter {
 
 		/**
-		* Add filter
-		*
-		* @wp_hook action wp_loaded
-		*/
+		 * Add menu filter.
+		 *
+		 * @since 1.1.5
+		 */
 		public function __construct() {
 
-			add_filter( 'wp_edit_nav_menu_walker', array( $this, '_filter_walker' ), 99 );
+			add_filter( 'wp_edit_nav_menu_walker', array( $this, 'edit_nav_menu_walker' ), 99 );
 
 			$this->dependencies();
 		}
-
+		/**
+		 * Load dependencies.
+		 *
+		 * @since 1.1.5
+		 */
 		public function dependencies() {
 
 			require_once plugin_dir_path( __FILE__ ) . 'class-simple-mega-menu-walker-nav-menu-edit.php';
@@ -27,18 +41,17 @@ if ( ! class_exists( 'Simple_Mega_Menu_Walker_Filter' ) ) :
 
 
 		/**
-		* Replace default menu editor walker with ours
-		*
-		* We don't actually replace the default walker. We're still using it and
-		* only injecting some HTMLs.
-		*
-		* @since   0.1.0
-		* @access  private
-		* @wp_hook filter wp_edit_nav_menu_walker
-		* @param   string $walker Walker class name
-		* @return  string Walker class name
-		*/
-		public function _filter_walker( $walker ) {
+		 * Replace default menu editor walker with ours.
+		 *
+		 * We don't actually replace the default walker. We're still using it and
+		 * only injecting some HTMLs.
+		 *
+		 * @since 1.1.5
+		 *
+		 * @param string $walker Walker class name.
+		 * @return string Walker class name.
+		 */
+		public function edit_nav_menu_walker( $walker ) {
 
 			$navwalker = 'Simple_Mega_Menu_Nav_Walker_Edit';
 
@@ -50,10 +63,9 @@ if ( ! class_exists( 'Simple_Mega_Menu_Walker_Filter' ) ) :
 			return $walker;
 		}
 	}
-endif;
+}
 
+$simple_mega_menu_walker_filter = new Simple_Mega_Menu_Walker_Filter();
 
-$SimpleMegaMenuWalkerFilterInit = new Simple_Mega_Menu_Walker_Filter();
-
-// Uncomment the following line to test this plugin
+// Uncomment the following line to test this plugin.
 require_once plugin_dir_path( __FILE__ ) . 'class-simple-mega-menu-fields.php';

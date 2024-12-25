@@ -3,9 +3,26 @@
  * WXR importer class used in the Themebeez Demo Importer plugin.
  * Needed to extend the TT_Importer_WXR_Importer class to get/set the importer protected variables,
  * for use in the multiple AJAX calls.
+ *
+ * @since 1.0.0
+ *
+ * @package Themebeez_Toolkit
+ */
+
+/**
+ * Class - TT_WXR_Importer.
+ * Needed to extend the TT_Importer_WXR_Importer class to get/set the importer protected variables,
+ * for use in the multiple AJAX calls.
+ *
+ * @since 1.0.0
  */
 class TT_WXR_Importer extends TT_Importer_WXR_Importer {
 
+	/**
+	 * Class initialization.
+	 *
+	 * @param array $options Options.
+	 */
 	public function __construct( $options = array() ) {
 
 		parent::__construct( $options );

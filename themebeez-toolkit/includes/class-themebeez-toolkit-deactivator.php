@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin deactivation
  *
@@ -30,7 +29,5 @@ class Themebeez_Toolkit_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-
-		// Something goes here in future
 	}
 }

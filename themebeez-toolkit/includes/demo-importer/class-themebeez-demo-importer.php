@@ -1,9 +1,17 @@
 <?php
+/**
+ * Setup demo importer.
+ *
+ * @since 1.0.0
+ *
+ * @package Themebeez_Toolkit
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if( ! class_exists( 'Themebeez_Demo_Importer' ) ) {
+if ( ! class_exists( 'Themebeez_Demo_Importer' ) ) {
 	/**
 	 * Main Themebeez_Demo_Importer Class.
 	 *
@@ -17,15 +25,15 @@ if( ! class_exists( 'Themebeez_Demo_Importer' ) ) {
 		 *
 		 * @var string
 		 */
-		public $version = '1.2.5';
+		public $version = '1.0.0';
 
 		/**
 		 * The single instance of the class.
 		 *
-		 * @var Themebeez_Demo_Importer
+		 * @var Themebeez_Demo_Importer _instance
 		 * @since 1.0.0
 		 */
-		protected static $_instance = null;
+		protected static $instance = null;
 
 		/**
 		 * Main Themebeez_Demo_Importer Instance.
@@ -38,11 +46,12 @@ if( ! class_exists( 'Themebeez_Demo_Importer' ) ) {
 		 * @return Themebeez_Demo_Importer - Main instance.
 		 */
 		public static function instance() {
-			if ( is_null( self::$_instance ) ) {
-				self::$_instance = new self();
+
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
 			}
 
-			return self::$_instance;
+			return self::$instance;
 		}
 
 		/**
@@ -51,7 +60,7 @@ if( ! class_exists( 'Themebeez_Demo_Importer' ) ) {
 		 * @since 1.0.0
 		 */
 		public function __clone() {
-			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'themebeez-toolkit' ), '1.0.0' );
+			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'themebeez-toolkit' ), '1.0.0' );
 		}
 
 		/**
@@ -60,7 +69,7 @@ if( ! class_exists( 'Themebeez_Demo_Importer' ) ) {
 		 * @since 1.0.0
 		 */
 		public function __wakeup() {
-			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'themebeez-toolkit' ), '1.0.0' );
+			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'themebeez-toolkit' ), '1.0.0' );
 		}
 
 		/**
@@ -93,7 +102,6 @@ if( ! class_exists( 'Themebeez_Demo_Importer' ) ) {
 		 * @since 1.0.0
 		 */
 		private function init_hooks() {
-			//register_activation_hook( THEMEBEEZTOOLKIT_PLUGIN_FILE, array( 'TT_Install', 'install' ) );
 			register_shutdown_function( array( $this, 'log_errors' ) );
 			add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 11 );
 			add_action( 'init', array( $this, 'init' ), 0 );
@@ -105,7 +113,6 @@ if( ! class_exists( 'Themebeez_Demo_Importer' ) ) {
 		 * @since 1.0.0
 		 */
 		public function log_errors() {
-
 		}
 
 		/**
@@ -121,7 +128,7 @@ if( ! class_exists( 'Themebeez_Demo_Importer' ) ) {
 		/**
 		 * Define constant if not already set.
 		 *
-		 * @param string $name Constant name.
+		 * @param string      $name Constant name.
 		 * @param string|bool $value Constant value.
 		 */
 		private function define( $name, $value ) {
@@ -138,14 +145,15 @@ if( ! class_exists( 'Themebeez_Demo_Importer' ) ) {
 		 * @return bool
 		 */
 		private function is_request( $type ) {
+
 			switch ( $type ) {
-				case 'admin' :
+				case 'admin':
 					return is_admin();
-				case 'ajax' :
+				case 'ajax':
 					return defined( 'DOING_AJAX' );
-				case 'cron' :
+				case 'cron':
 					return defined( 'DOING_CRON' );
-				case 'frontend' :
+				case 'frontend':
 					return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
 			}
 		}
@@ -173,21 +181,20 @@ if( ! class_exists( 'Themebeez_Demo_Importer' ) ) {
 			/**
 			 * Class autoloader.
 			 */
-			include_once( TT_ABSPATH . 'includes/demo-importer/class-tt-autoloader.php' );
+			include_once TT_ABSPATH . 'includes/demo-importer/class-tt-autoloader.php';
 
 			/**
 			 * Abstract classes.
 			 */
-			include_once( TT_ABSPATH . 'includes/demo-importer/abstracts/abstract-tt-theme-demo.php' ); // TT_Data for CRUD.
+			include_once TT_ABSPATH . 'includes/demo-importer/abstracts/class-tt-theme-demo.php'; // TT_Data for CRUD.
+
 			/**
 			 * Core classes.
 			 */
-			include_once( TT_ABSPATH . 'includes/demo-importer/tt-core-functions.php' );
-			include_once( TT_ABSPATH . 'includes/demo-importer/class-tt-ajax.php' );
-
+			include_once TT_ABSPATH . 'includes/demo-importer/tt-core-functions.php';
 
 			if ( $this->is_request( 'admin' ) ) {
-				include_once( TT_ABSPATH . 'includes/demo-importer/admin/class-tt-admin.php' );
+				include_once TT_ABSPATH . 'includes/demo-importer/admin/class-tt-admin.php';
 			}
 
 			if ( $this->is_request( 'frontend' ) ) {
@@ -199,7 +206,6 @@ if( ! class_exists( 'Themebeez_Demo_Importer' ) ) {
 		 * Include required frontend files.
 		 */
 		public function frontend_includes() {
-
 		}
 
 		/**
@@ -212,6 +218,7 @@ if( ! class_exists( 'Themebeez_Demo_Importer' ) ) {
 		 * Init Themebeez_Demo_Importer when WordPress Initialises.
 		 */
 		public function init() {
+
 			// Before init action.
 			do_action( 'before_themebeez_toolkit_init' );
 

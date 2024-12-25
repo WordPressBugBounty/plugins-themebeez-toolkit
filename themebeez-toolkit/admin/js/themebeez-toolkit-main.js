@@ -29,7 +29,9 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-	$('.jsthemebeezimport-data').on('click', function () {
+	$('.jsthemebeezimport-data').on('click', function (e) {
+
+        e.preventDefault();
 
         var attr = $(this).attr('disabled');
 
@@ -42,8 +44,8 @@
 
         // Prepare data for the AJAX call
         var data = new FormData();
-        data.append( 'action', 'TT_import_demo_data' );
-        data.append( 'security', tt_admin_ajax.ajax_nonce );
+        data.append( 'action', 'themebeez_toolkit_import_demo_data' );
+        data.append( 'security', themebeezToolkitScriptData.ajax_nonce );
         data.append( 'selected', $(this).attr( 'data-index' ) );//$('#TT__demo-import-files').val());
         if ($('#TT__content-file-upload').length) {
             data.append('content_file', $('#TT__content-file-upload')[0].files[0]);
@@ -65,16 +67,16 @@
         var $notice_node;
         if ($this.hasClass('no-data-exists')) {
 
-            $('.et-no-data').html('');
+            $('.tt-no-data').html('');
 
-            $notice_node = $('.et-no-data');
+            $notice_node = $('.tt-no-data');
 
         } else {
             $notice_node = $this.closest('.theme');
         }
         $.ajax({
             method: 'POST',
-            url: tt_admin_ajax.ajax_url,
+            url: themebeezToolkitScriptData.ajax_url,
             data: data,
             contentType: false,
             processData: false,

@@ -5,9 +5,16 @@
  *
  * Used in the Customizer importer.
  *
- * @since 1.0.6
+ * @since 1.0.0
+ *
+ * @package Themebeez_Toolkit
  */
 
+/**
+ * Theme customize importer.
+ *
+ * @since 1.0.0
+ */
 final class TT_Customizer_Option extends WP_Customize_Setting {
 
 	/**

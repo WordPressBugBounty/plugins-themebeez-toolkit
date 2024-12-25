@@ -1,6 +1,19 @@
 <?php
-if( ! class_exists( 'Simple_Mega_Menu_Nav_Walker_Edit' ) ) {
+/**
+ * Extends Simple_Mega_Menu_Walker_Nav_Menu_Edit to display custom menu fields.
+ *
+ * @since 1.1.5
+ *
+ * @package Themebeez_Toolkit.
+ */
 
+if ( ! class_exists( 'Simple_Mega_Menu_Nav_Walker_Edit' ) ) {
+	/**
+	 * Class - Simple_Mega_Menu_Nav_Walker_Edit.
+	 * Extends - Simple_Mega_Menu_Walker_Nav_Menu_Edit.
+	 *
+	 * @since 1.1.5
+	 */
 	class Simple_Mega_Menu_Nav_Walker_Edit extends Simple_Mega_Menu_Walker_Nav_Menu_Edit {
 
 		/**
@@ -44,8 +57,8 @@ if( ! class_exists( 'Simple_Mega_Menu_Nav_Walker_Edit' ) ) {
 		 * @param array  $args   Menu item args.
 		 * @param int    $id     Nav menu ID.
 		 */
-		function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-			
+		public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+
 			$item_output = '';
 
 			parent::start_el( $item_output, $item, $depth, $args, $id );

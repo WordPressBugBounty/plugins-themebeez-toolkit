@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define the internationalization functionality
  *
@@ -24,8 +23,7 @@
  * @subpackage Themebeez_Toolkit/includes
  * @author     themebeez <themebeez@gmail.com>
  */
-class Themebeez_Toolkit_i18n {
-
+class Themebeez_Toolkit_i18n { // PHPCS:IGNORE
 
 	/**
 	 * Load the plugin text domain for translation.
@@ -39,9 +37,5 @@ class Themebeez_Toolkit_i18n {
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
-
 	}
-
-
-
 }

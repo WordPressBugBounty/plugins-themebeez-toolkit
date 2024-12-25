@@ -5,9 +5,19 @@
  * Code is mostly from the Widget Importer & Exporter plugin.
  *
  * @see https://wordpress.org/plugins/widget-importer-exporter/
+ *
+ * @since 1.0.0
+ *
+ * @package Themebeez_Toolkit
  */
 
-
+/**
+ * Class - TT_Importer_Widget.
+ *
+ * Class for handling widget data imports.
+ *
+ * @since 1.0.0
+ */
 class TT_Importer_Widget {
 
 	/**
@@ -78,8 +88,8 @@ class TT_Importer_Widget {
 		}
 
 		// Hook before import.
-		do_action( 'themebeez-demo-importer/widget_importer_before_widgets_import' );
-		$data = apply_filters( 'themebeez-demo-importer/before_widgets_import_data', $data );
+		do_action( 'themebeez_toolkit_widget_importer_before_widgets_import' );
+		$data = apply_filters( 'themebeez_toolkit_before_widgets_import_data', $data );
 
 		// Get all available widgets site supports.
 		$available_widgets = $this->available_widgets();
@@ -98,7 +108,7 @@ class TT_Importer_Widget {
 		foreach ( $data as $sidebar_id => $widgets ) {
 
 			// Skip inactive widgets (should not be in export file).
-			if ( 'wp_inactive_widgets' == $sidebar_id ) {
+			if ( 'wp_inactive_widgets' === $sidebar_id ) {
 				continue;
 			}
 
@@ -112,7 +122,7 @@ class TT_Importer_Widget {
 				$sidebar_available    = false;
 				$use_sidebar_id       = 'wp_inactive_widgets'; // Add to inactive if sidebar does not exist in theme.
 				$sidebar_message_type = 'error';
-				$sidebar_message      = __( 'Sidebar does not exist in theme (moving widget to Inactive)', 'themebeez-toolkit' );
+				$sidebar_message      = esc_html__( 'Sidebar does not exist in theme (moving widget to Inactive)', 'themebeez-toolkit' );
 			}
 
 			// Result for sidebar.
@@ -140,19 +150,19 @@ class TT_Importer_Widget {
 				// Filter to modify settings object before conversion to array and import.
 				// Leave this filter here for backwards compatibility with manipulating objects (before conversion to array below).
 				// Ideally the newer wie_widget_settings_array below will be used instead of this.
-				$widget = apply_filters( 'themebeez-demo-importer/widget_settings', $widget ); // Object.
+				$widget = apply_filters( 'themebeez_toolkit_widget_settings', $widget ); // Object.
 
 				// Convert multidimensional objects to multidimensional arrays.
 				// Some plugins like Jetpack Widget Visibility store settings as multidimensional arrays.
 				// Without this, they are imported as objects and cause fatal error on Widgets page.
 				// If this creates problems for plugins that do actually intend settings in objects then may need to consider other approach: https://wordpress.org/support/topic/problem-with-array-of-arrays.
 				// It is probably much more likely that arrays are used than objects, however.
-				$widget = json_decode( json_encode( $widget ), true );
+				$widget = json_decode( wp_json_encode( $widget ), true );
 
 				// Filter to modify settings array.
 				// This is preferred over the older wie_widget_settings filter above.
 				// Do before identical check because changes may make it identical to end result (such as URL replacements).
-				$widget = apply_filters( 'themebeez-demo-importer/widget_settings_array', $widget );
+				$widget = apply_filters( 'themebeez_toolkit_widget_settings_array', $widget );
 
 				// Does widget with identical settings already exist in same sidebar?
 				if ( ! $fail && isset( $widget_instances[ $id_base ] ) ) {
@@ -166,10 +176,10 @@ class TT_Importer_Widget {
 					foreach ( $single_widget_instances as $check_id => $check_widget ) {
 
 						// Is widget in same sidebar and has identical settings?
-						if ( in_array( "$id_base-$check_id", $sidebar_widgets ) && (array) $widget == $check_widget ) {
+						if ( in_array( "$id_base-$check_id", $sidebar_widgets, true ) && (array) $widget === $check_widget ) {
 							$fail                = true;
 							$widget_message_type = 'warning';
-							$widget_message      = __( 'Widget already exists', 'themebeez-toolkit' ); // Explain why widget not imported.
+							$widget_message      = esc_html__( 'Widget already exists', 'themebeez-toolkit' ); // Explain why widget not imported.
 
 							break;
 						}
@@ -191,7 +201,7 @@ class TT_Importer_Widget {
 					// If key is 0, make it 1.
 					// When 0, an issue can occur where adding a widget causes data from other widget to load, and the widget doesn't stick (reload wipes it).
 					if ( '0' === strval( $new_instance_id_number ) ) {
-						$new_instance_id_number                           = 1;
+						$new_instance_id_number                             = 1;
 						$single_widget_instances[ $new_instance_id_number ] = $single_widget_instances[0];
 						unset( $single_widget_instances[0] );
 					}
@@ -207,8 +217,8 @@ class TT_Importer_Widget {
 					update_option( 'widget_' . $id_base, $single_widget_instances );
 
 					// Assign widget instance to sidebar.
-					$sidebars_widgets = get_option( 'sidebars_widgets' ); // Which sidebars have which widgets, get fresh every time.
-					$new_instance_id = $id_base . '-' . $new_instance_id_number; // Use ID number from new widget instance.
+					$sidebars_widgets                      = get_option( 'sidebars_widgets' ); // Which sidebars have which widgets, get fresh every time.
+					$new_instance_id                       = $id_base . '-' . $new_instance_id_number; // Use ID number from new widget instance.
 					$sidebars_widgets[ $use_sidebar_id ][] = $new_instance_id; // Add new instance to sidebar.
 					update_option( 'sidebars_widgets', $sidebars_widgets ); // Save the amended data.
 
@@ -223,14 +233,14 @@ class TT_Importer_Widget {
 						'widget_id_num'     => $new_instance_id_number,
 						'widget_id_num_old' => $instance_id_number,
 					);
-					do_action( 'themebeez-demo-importer/widget_importer_after_single_widget_import', $after_widget_import );
+					do_action( 'themebeez_toolkit_widget_importer_after_single_widget_import', $after_widget_import );
 					// Success message.
 					if ( $sidebar_available ) {
 						$widget_message_type = 'success';
-						$widget_message      = __( 'Imported', 'themebeez-toolkit' );
+						$widget_message      = esc_html__( 'Imported', 'themebeez-toolkit' );
 					} else {
 						$widget_message_type = 'warning';
-						$widget_message      = __( 'Imported to Inactive', 'themebeez-toolkit' );
+						$widget_message      = esc_html__( 'Imported to Inactive', 'themebeez-toolkit' );
 					}
 				}
 
@@ -244,10 +254,10 @@ class TT_Importer_Widget {
 		}
 
 		// Hook after import.
-		do_action( 'themebeez-demo-importer/widget_importer_after_widgets_import' );
+		do_action( 'themebeez_toolkit_widget_importer_after_widgets_import' );
 
 		// Return results.
-		return apply_filters( 'themebeez-demo-importer/widget_import_results', $results );
+		return apply_filters( 'themebeez_toolkit_widget_import_results', $results );
 	}
 
 
@@ -273,7 +283,7 @@ class TT_Importer_Widget {
 			}
 		}
 
-		return apply_filters( 'themebeez-demo-importer/available_widgets', $available_widgets );
+		return apply_filters( 'themebeez_toolkit_available_widgets', $available_widgets );
 	}
 
 

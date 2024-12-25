@@ -5,9 +5,18 @@
  * Code is mostly from the Customizer Export/Import plugin.
  *
  * @see https://wordpress.org/plugins/customizer-export-import/
+ *
+ * @since 1.0.0
+ *
+ * @package Themebeez_Toolkit
  */
 
-
+/**
+ * Class - TT_Importer_Customizer_Importer.
+ * Customize data importer.
+ *
+ * @since 1.0.0
+ */
 class TT_Importer_Customizer_Importer {
 
 	/**
@@ -33,6 +42,7 @@ class TT_Importer_Customizer_Importer {
 			return new WP_Error(
 				'missing_cutomizer_import_file',
 				sprintf(
+					/* Translators: %s file path. */
 					esc_html__( 'The customizer import file is missing! File path: %s', 'themebeez-toolkit' ),
 					$import_file_path
 				)
@@ -40,14 +50,14 @@ class TT_Importer_Customizer_Importer {
 		}
 
 		// Get the upload data.
-		$raw  = TT_Helpers::data_from_file( $import_file_path );
+		$raw = TT_Helpers::data_from_file( $import_file_path );
 
 		// Make sure we got the data.
 		if ( is_wp_error( $raw ) ) {
 			return $raw;
 		}
 
-		$data = unserialize( $raw );
+		$data = unserialize( $raw ); // phpcs:ignore
 
 		// Data checks.
 		if ( ! is_array( $data ) && ( ! isset( $data['template'] ) || ! isset( $data['mods'] ) ) ) {
@@ -64,7 +74,7 @@ class TT_Importer_Customizer_Importer {
 		}
 
 		// Import images.
-		if ( apply_filters( 'themebeez-demo-importer/customizer_import_images', true ) ) {
+		if ( apply_filters( 'themebeez_demo_importer_customizer_import_images', true ) ) {
 			$data['mods'] = self::import_customizer_images( $data['mods'] );
 		}
 
@@ -77,11 +87,15 @@ class TT_Importer_Customizer_Importer {
 			}
 
 			foreach ( $data['options'] as $option_key => $option_value ) {
-				$option = new TT_Customizer_Option( $wp_customize, $option_key, array(
-					'default'    => '',
-					'type'       => 'option',
-					'capability' => 'edit_theme_options',
-				) );
+				$option = new TT_Customizer_Option(
+					$wp_customize,
+					$option_key,
+					array(
+						'default'    => '',
+						'type'       => 'option',
+						'capability' => 'edit_theme_options',
+					)
+				);
 
 				$option->import( $option_value );
 			}
@@ -103,6 +117,7 @@ class TT_Importer_Customizer_Importer {
 	 * @return array The mods array with any new import data.
 	 */
 	private static function import_customizer_images( $mods ) {
+
 		foreach ( $mods as $key => $val ) {
 			if ( self::customizer_is_image_url( $val ) ) {
 				$data = self::customizer_sideload_image( $val );
@@ -131,18 +146,20 @@ class TT_Importer_Customizer_Importer {
 	 * @return array An array of image data.
 	 */
 	private static function customizer_sideload_image( $file ) {
+
 		$data = new stdClass();
 
 		if ( ! function_exists( 'media_handle_sideload' ) ) {
-			require_once( ABSPATH . 'wp-admin/includes/media.php' );
-			require_once( ABSPATH . 'wp-admin/includes/file.php' );
-			require_once( ABSPATH . 'wp-admin/includes/image.php' );
+			require_once ABSPATH . 'wp-admin/includes/media.php';
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+			require_once ABSPATH . 'wp-admin/includes/image.php';
 		}
+
 		if ( ! empty( $file ) ) {
 
 			// Set variables for storage, fix file filename for query strings.
 			preg_match( '/[^\?]+\.(jpe?g|jpe|gif|png)\b/i', $file, $matches );
-			$file_array = array();
+			$file_array         = array();
 			$file_array['name'] = basename( $matches[0] );
 
 			// Download file to temp location.
@@ -158,7 +175,7 @@ class TT_Importer_Customizer_Importer {
 
 			// If error storing permanently, unlink.
 			if ( is_wp_error( $id ) ) {
-				unlink( $file_array['tmp_name'] );
+				wp_delete_file( $file_array['tmp_name'] );
 				return $id;
 			}
 
@@ -178,12 +195,13 @@ class TT_Importer_Customizer_Importer {
 	 * Checks to see whether a string is an image url or not.
 	 *
 	 * @since 1.0.0
-	 * @param string $string The string to check.
+	 * @param string $img_url The image URL to check.
 	 * @return bool Whether the string is an image url or not.
 	 */
-	private static function customizer_is_image_url( $string = '' ) {
-		if ( is_string( $string ) ) {
-			if ( preg_match( '/\.(jpg|jpeg|png|gif)/i', $string ) ) {
+	private static function customizer_is_image_url( $img_url = '' ) {
+
+		if ( is_string( $img_url ) ) {
+			if ( preg_match( '/\.(jpg|jpeg|png|gif)/i', $img_url ) ) {
 				return true;
 			}
 		}

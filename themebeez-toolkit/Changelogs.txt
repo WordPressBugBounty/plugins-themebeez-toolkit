@@ -1,10 +1,18 @@
 == Changelog ==
 
+= 1.3 - 25 December, 2024 =
+- Fixed:   PHP errors and warnings.
+- Updated: Theme dashboard page.
+- Removed: Theme dashboard and demo content configurations for deprecated themes. 
+- Removed: Unwanted codes.
+
+
 = 1.2.6 - 25 July, 2023 =
 - Fixed: Crashing of WooCommerce product importer page when the plugin is active.
 - Fixed: PHP Deprecated:  Function get_page_by_title is <strong>deprecated</strong> since version 6.2.0! Use WP_Query instead.
 - Fixed: PHP Notice:  Undefined variable: installed_demos.
 - Updated: Removed block widgets when importing a demo.
+
 
 = 1.2.5 - 23 January, 2022 =
 - Tested: WordPress version 5.9

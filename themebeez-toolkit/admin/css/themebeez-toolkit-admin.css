@@ -2,57 +2,20 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
-
- .themebeez-toolkit-notice {
-
-    background: #e9eff3;
-    border: 10px solid #fff;
-    color: #608299;
-    padding: 30px 10px;
-    text-align: center;
-    box-shadow: none;
-    text-align: center;
-    padding: 25px;
-    position: relative;
+#tt_themebeez_blog_posts_dashboard_widget.postbox .inside {
+	padding: 0;
 }
 
-.TT_about-description {
-	
-	position: relative;
-	background: #fff;
-	padding: 50px 60px;
-	margin-bottom: 30px;
+.tt-rss-feed {
+	padding: 0 12px;
 }
 
-.TT_about-description:after,
-.TT_about-description:before {
-
-	content: '\f122';
-	font-family: 'dashicons';
-	position: absolute;
-	font-style: normal;
-	font-size: 32px;
+.tt-rss-feed ul li:not(:last-child) {
+	border-bottom: 1px solid #eeeeee;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
 }
 
-.TT_about-description:before {
-
-	left: 20px;
-    top: 20px;
-}
-
-.TT_about-description:after {
-
-	bottom: 20px;
-	right: 20px;
-	-webkit-transform: rotate(180deg);
-	-o-transform: rotate(180deg);
-	-ms-transform: rotate(180deg);
-	-moz-transform: rotate(180deg);
-	transform: rotate(180deg);
-}
-
-.TT_about-description ul {
-
-	list-style: disc;
-	margin: 1em 1em 1em 3em;
+.tt-rss-feed ul li .rss-date {
+	font-size: 12px;
 }

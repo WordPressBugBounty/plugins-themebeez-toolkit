@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -44,28 +43,91 @@ class Themebeez_Toolkit_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param string $plugin_name The name of this plugin.
+	 * @param string $version     The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
+		$this->version     = $version;
+	}
 
-		$this->version = $version;
+	/**
+	 * Register admin dashboard widgets.
+	 *
+	 * @since 1.0.0
+	 */
+	public function register_dashboard_widget() {
 
-		$this->admin_dependencies();
+		wp_add_dashboard_widget(
+			'tt_themebeez_blog_posts_dashboard_widget',
+			esc_html__( 'Latest Posts From Themebeez', 'themebeez-toolkit' ),
+			array( $this, 'blog_posts_dashboard_widget_callback' )
+		);
+	}
 
-		if( apply_filters( 'themebeez_toolkit_admin_dashboard_widgets', true ) ) {
+	/**
+	 * Callback for 'tt_themebeez_blog_posts_dashboard_widget' admin dashboard widget.
+	 *
+	 * @since 1.0.0
+	 */
+	public function blog_posts_dashboard_widget_callback() {
 
-	        add_action( 'wp_dashboard_setup', 'Themebeez_Toolkit_Admin_Dashboard_Widget::register_dashboard_widget' );
-	    }
-	}	
+		$args = array(
+			'show_author'  => 0,
+			'show_date'    => 1,
+			'show_summary' => 0,
+			'items'        => 10,
+		);
 
+		echo '<div class="tt-rss-feed">';
 
-	public function admin_dependencies() {
+		wp_widget_rss_output( 'https://themebeez.com/blog/feed/', $args );
 
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-themebeez-admin-dashboard-widget.php';
-	} 
+		echo '</div>';
+
+		$urls = array(
+			'main_site_url' => array(
+				'text'               => esc_html__( 'Main Site', 'themebeez-toolkit' ),
+				'url'                => 'https://themebeez.com/?utm_source=dashboard&utm_medium=widget&utm_campaign=userdashboard',
+				'screen_reader_text' => esc_html__( 'Open in a new tab', 'themebeez-toolkit' ),
+				'icon'               => 'dashicons dashicons-external',
+			),
+			'theme_url'     => array(
+				'text'               => esc_html__( 'All Themes', 'themebeez-toolkit' ),
+				'url'                => 'https://themebeez.com/themes/?utm_source=dashboard&utm_medium=widget&utm_campaign=userdashboard',
+				'screen_reader_text' => esc_html__( 'Open in a new tab', 'themebeez-toolkit' ),
+				'icon'               => 'dashicons dashicons-external',
+			),
+			'blog_url'      => array(
+				'text'               => esc_html__( 'Blog Posts', 'themebeez-toolkit' ),
+				'url'                => 'https://themebeez.com/blog/?utm_source=dashboard&utm_medium=widget&utm_campaign=userdashboard',
+				'screen_reader_text' => esc_html__( 'Open in a new tab', 'themebeez-toolkit' ),
+				'icon'               => 'dashicons dashicons-external',
+			),
+		);
+
+		echo '<p class="community-events-footer">';
+
+		$total_url_count = count( $urls );
+
+		$url_index = 0;
+
+		foreach ( $urls as $index => $url_content ) {
+
+			echo '<a href="' . esc_url( $url_content['url'] ) . '" target="_blank">';
+
+			echo esc_html( $url_content['text'] );
+
+			echo '<span class="screen-reader-text">(' . esc_html( $url_content['screen_reader_text'] ) . ')</span> <span aria-hidden="true" class="' . esc_attr( $url_content['icon'] ) . '"></span>';
+
+			echo '</a>';
+
+			echo ( $index !== $total_url_count ) ? ' | ' : '';
+		}
+
+		echo '</p>';
+	}
 
 	/**
 	 * Register the stylesheets for the admin area.
@@ -86,7 +148,13 @@ class Themebeez_Toolkit_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/themebeez-toolkit-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style(
+			$this->plugin_name,
+			plugin_dir_url( __FILE__ ) . 'css/themebeez-toolkit-admin.css',
+			array(),
+			$this->version,
+			'all'
+		);
 	}
 
 	/**
@@ -107,9 +175,5 @@ class Themebeez_Toolkit_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/themebeez-toolkit-admin.js', array( 'jquery' ), $this->version, false );
-
 	}
-
 }

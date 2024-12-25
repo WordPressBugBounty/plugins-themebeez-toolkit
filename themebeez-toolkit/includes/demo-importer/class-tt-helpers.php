@@ -1,10 +1,17 @@
 <?php
 /**
- * Static functions used in the themebeez toolkit plugin.
+ * Class with the collection of helper functions.
+ *
+ * @since 1.0.0
+ *
+ * @package Themebeez_Toolkit
  */
 
 /**
- * Class with static helper functions.
+ * Class - TT_Helpers.
+ * Collection of helper functions.
+ *
+ * @since 1.0.0
  */
 class TT_Helpers {
 
@@ -16,6 +23,7 @@ class TT_Helpers {
 	 * @return array list of filtered arrays.
 	 */
 	public static function validate_import_file_info( $import_files ) {
+
 		$filtered_import_file_info = array();
 
 		foreach ( $import_files as $import_file ) {
@@ -48,8 +56,8 @@ class TT_Helpers {
 	/**
 	 * Download import files. Content .xml and widgets .wie|.json files.
 	 *
-	 * @param  array $import_file_info array with import file details.
-	 * @param  string $start_date string of date and time.
+	 * @param array  $import_file_info Array with import file details.
+	 * @param string $start_date String of date and time.
 	 *
 	 * @return array|WP_Error array of paths to the downloaded files or WP_Error object with error message.
 	 */
@@ -57,7 +65,7 @@ class TT_Helpers {
 
 		$downloaded_files = array();
 		$upload_dir       = wp_upload_dir();
-		$upload_path      = apply_filters( 'themebeez-demo-importer/upload_file_path', trailingslashit( $upload_dir['path'] ) );
+		$upload_path      = apply_filters( 'themebeez_toolkit_upload_file_path', trailingslashit( $upload_dir['path'] ) );
 
 		// ----- Set content file path -----
 		// Check if 'import_file_url' is not defined. That would mean a local file.
@@ -68,10 +76,9 @@ class TT_Helpers {
 				return new WP_Error(
 					'url_or_local_file_not_defined',
 					sprintf(
-						__( '"import_file_url" or "local_import_file" for %s%s%s are not defined!', 'themebeez-toolkit' ),
-						'<strong>',
-						$$import_file_info['import_file_name'],
-						'</strong>'
+						/* Translators: %s: import file name */
+						__( '"import_file_url" or "local_import_file" for <strong>%s</strong> are not defined!', 'themebeez-toolkit' ),
+						$import_file_info['import_file_name'],
 					)
 				);
 			}
@@ -86,7 +93,7 @@ class TT_Helpers {
 			}
 
 			// Setup filename path to save the data content.
-			$demo_import_file_path = $upload_path . apply_filters( 'themebeez-demo-importer/downloaded_content_file_prefix', 'demo-content-import-file_' ) . $start_date . apply_filters( 'themebeez-demo-importer/downloaded_content_file_suffix_and_file_extension', '.xml' );
+			$demo_import_file_path = $upload_path . apply_filters( 'themebeez_toolkit_downloaded_content_file_prefix', 'demo-content-import-file_' ) . $start_date . apply_filters( 'themebeez_toolkit_downloaded_content_file_suffix_and_file_extension', '.xml' );
 
 			// Write data content to the file and return the file path on successful write.
 			$downloaded_files['content'] = self::write_to_file( $demo_import_content, $demo_import_file_path );
@@ -110,7 +117,7 @@ class TT_Helpers {
 			}
 
 			// Setup filename path to save the widget content.
-			$import_widgets_file_path = $upload_path . apply_filters( 'themebeez-demo-importer/downloaded_widgets_file_prefix', 'demo-widgets-import-file_' ) . $start_date . apply_filters( 'themebeez-demo-importer/downloaded_widgets_file_suffix_and_file_extension', '.json' );
+			$import_widgets_file_path = $upload_path . apply_filters( 'themebeez_toolkit_downloaded_widgets_file_prefix', 'demo-widgets-import-file_' ) . $start_date . apply_filters( 'themebeez_toolkit_downloaded_widgets_file_suffix_and_file_extension', '.json' );
 
 			// Write widget content to the file and return the file path on successful write.
 			$downloaded_files['widgets'] = self::write_to_file( $demo_import_widgets_content, $import_widgets_file_path );
@@ -119,7 +126,7 @@ class TT_Helpers {
 			if ( is_wp_error( $downloaded_files['widgets'] ) ) {
 				return $downloaded_files['widgets'];
 			}
-		} else if ( ! empty( $import_file_info['local_import_widget_file'] ) ) {
+		} elseif ( ! empty( $import_file_info['local_import_widget_file'] ) ) {
 			if ( file_exists( $import_file_info['local_import_widget_file'] ) ) {
 				$downloaded_files['widgets'] = $import_file_info['local_import_widget_file'];
 			}
@@ -138,7 +145,7 @@ class TT_Helpers {
 			}
 
 			// Setup filename path to save the customizer content.
-			$import_customizer_file_path = $upload_path . apply_filters( 'themebeez-demo-importer/downloaded_customizer_file_prefix', 'demo-customizer-import-file_' ) . $start_date . apply_filters( 'themebeez-demo-importer/downloaded_customizer_file_suffix_and_file_extension', '.dat' );
+			$import_customizer_file_path = $upload_path . apply_filters( 'themebeez_toolkit_downloaded_customizer_file_prefix', 'demo-customizer-import-file_' ) . $start_date . apply_filters( 'themebeez_toolkit_downloaded_customizer_file_suffix_and_file_extension', '.dat' );
 
 			// Write customizer content to the file and return the file path on successful write.
 			$downloaded_files['customizer'] = self::write_to_file( $demo_import_customizer_content, $import_customizer_file_path );
@@ -147,7 +154,7 @@ class TT_Helpers {
 			if ( is_wp_error( $downloaded_files['customizer'] ) ) {
 				return $downloaded_files['customizer'];
 			}
-		} else if ( ! empty( $import_file_info['local_import_customizer_file'] ) ) {
+		} elseif ( ! empty( $import_file_info['local_import_customizer_file'] ) ) {
 			if ( file_exists( $import_file_info['local_import_customizer_file'] ) ) {
 				$downloaded_files['customizer'] = $import_file_info['local_import_customizer_file'];
 			}
@@ -172,10 +179,9 @@ class TT_Helpers {
 			return new WP_Error(
 				'url_not_defined',
 				sprintf(
-					__( 'URL for %s%s%s file is not defined!', 'themebeez-toolkit' ),
-					'<strong>',
-					$file_name,
-					'</strong>'
+					/* Translators: %s: file name */
+					__( 'URL for <strong>%s</strong> file is not defined!', 'themebeez-toolkit' ),
+					$file_name
 				)
 			);
 		}
@@ -183,7 +189,7 @@ class TT_Helpers {
 		// Get file content from the server.
 		$response = wp_remote_get(
 			$url,
-			array( 'timeout' => apply_filters( 'themebeez-demo-importer/timeout_for_downloading_import_file', 20 ) )
+			array( 'timeout' => apply_filters( 'themebeez_toolkit_timeout_for_downloading_import_file', 20 ) )
 		);
 
 		if ( is_wp_error( $response ) || 200 !== $response['response']['code'] ) {
@@ -194,15 +200,13 @@ class TT_Helpers {
 			return new WP_Error(
 				'file_fetching_error',
 				sprintf(
-					__( 'An error occurred while fetching %s%s%s file from the server!%sReason: %s - %s.', 'themebeez-toolkit' ),
-					'<strong>',
+					/* Translators: 1: filename, 2: error code, 3: error message */
+					__( 'An error occurred while fetching <strong>%1$s</strong> file from the server!<br>Reason: %2$s - %3$s.', 'themebeez-toolkit' ),
 					$file_name,
-					'</strong>',
-					'<br>',
 					$response_error['error_code'],
 					$response_error['error_message']
 				) . '<br>' .
-				apply_filters( 'themebeez-demo-importer/message_after_file_fetching_error', '' )
+				apply_filters( 'themebeez_toolkit_message_after_file_fetching_error', '' )
 			);
 		}
 
@@ -235,8 +239,8 @@ class TT_Helpers {
 			return new WP_Error(
 				'failed_writing_file_to_server',
 				sprintf(
-					__( 'An error occurred while writing file to your server! Tried to write a file to: %s%s.', 'themebeez-toolkit' ),
-					'<br>',
+					/* Translators: %s: file path */
+					__( 'An error occurred while writing file to your server! Tried to write a file to: <br>%s.', 'themebeez-toolkit' ),
 					$file_path
 				)
 			);
@@ -280,8 +284,8 @@ class TT_Helpers {
 			return new WP_Error(
 				'failed_writing_file_to_server',
 				sprintf(
-					__( 'An error occurred while writing file to your server! Tried to write a file to: %s%s.', 'themebeez-toolkit' ),
-					'<br>',
+					/* Translators: %s: file path */
+					__( 'An error occurred while writing file to your server! Tried to write a file to: <br>%s.', 'themebeez-toolkit' ),
 					$file_path
 				)
 			);
@@ -316,8 +320,8 @@ class TT_Helpers {
 			return new WP_Error(
 				'failed_reading_file_from_server',
 				sprintf(
-					__( 'An error occurred while reading a file from your server! Tried reading file from path: %s%s.', 'themebeez-toolkit' ),
-					'<br>',
+					/* Translators: %s: file path */
+					__( 'An error occurred while reading a file from your server! Tried reading file from path: <br>%s.', 'themebeez-toolkit' ),
 					$file_path
 				)
 			);
@@ -340,16 +344,17 @@ class TT_Helpers {
 			return new WP_Error(
 				'no_direct_file_access',
 				sprintf(
-					__( 'This WordPress page does not have %sdirect%s write file access. This plugin needs it in order to save the demo import xml file to the upload directory of your site. You can change this setting with these instructions: %s.', 'themebeez-toolkit' ),
-					'<strong>',
-					'</strong>',
+					/* Translators: %s: set direct filesystem method */
+					__( 'This WordPress page does not have <strong>direct</strong> write file access. This plugin needs it in order to save the demo import xml file to the upload directory of your site. You can change this setting with these instructions: %s.', 'themebeez-toolkit' ),
 					'<a href="http://gregorcapuder.com/wordpress-how-to-set-direct-filesystem-method/" target="_blank">How to set <strong>direct</strong> filesystem method</a>'
 				)
 			);
 		}
 
 		// Get plugin page settings.
-		$plugin_page_setup = apply_filters( 'themebeez-demo-importer/plugin_page_setup', array(
+		$plugin_page_setup = apply_filters(
+			'themebeez_toolkit_plugin_page_setup',
+			array(
 				'parent_slug' => 'themes.php',
 				'page_title'  => esc_html__( 'Themebeez Demo Import', 'themebeez-toolkit' ),
 				'menu_title'  => esc_html__( 'Import Demo Data', 'themebeez-toolkit' ),
@@ -361,15 +366,15 @@ class TT_Helpers {
 		// Get user credentials for WP file-system API.
 		$demo_import_page_url = wp_nonce_url( $plugin_page_setup['parent_slug'] . '?page=' . $plugin_page_setup['menu_slug'], $plugin_page_setup['menu_slug'] );
 
-		if ( false === ( $creds = request_filesystem_credentials( $demo_import_page_url, '', false, false, null ) ) ) {
-			return new WP_error(
+		if ( false === request_filesystem_credentials( $demo_import_page_url, '', false, false, null ) ) {
+			return new WP_Error(
 				'filesystem_credentials_could_not_be_retrieved',
 				__( 'An error occurred while retrieving reading/writing permissions to your server (could not retrieve WP filesystem credentials)!', 'themebeez-toolkit' )
 			);
 		}
 
 		// Now we have credentials, try to get the wp_filesystem running.
-		if ( ! WP_Filesystem( $creds ) ) {
+		if ( ! WP_Filesystem() ) {
 			return new WP_Error(
 				'wrong_login_credentials',
 				__( 'Your WordPress login credentials don\'t allow to use WP_Filesystem!', 'themebeez-toolkit' )
@@ -412,9 +417,9 @@ class TT_Helpers {
 	public static function get_log_path( $start_date = '' ) {
 
 		$upload_dir  = wp_upload_dir();
-		$upload_path = apply_filters( 'themebeez-demo-importer/upload_file_path', trailingslashit( $upload_dir['path'] ) );
+		$upload_path = apply_filters( 'themebeez_toolkit_upload_file_path', trailingslashit( $upload_dir['path'] ) );
 
-		$log_path = $upload_path . apply_filters( 'themebeez-demo-importer/log_file_prefix', 'log_file_' ) . $start_date . apply_filters( 'themebeez-demo-importer/log_file_suffix_and_file_extension', '.txt' );
+		$log_path = $upload_path . apply_filters( 'themebeez_toolkit_log_file_prefix', 'log_file_' ) . $start_date . apply_filters( 'themebeez_toolkit_log_file_suffix_and_file_extension', '.txt' );
 
 		self::register_file_as_media_attachment( $log_path );
 
@@ -433,13 +438,13 @@ class TT_Helpers {
 
 		// Check the type of file.
 		$log_mimes = array( 'txt' => 'text/plain' );
-		$filetype  = wp_check_filetype( basename( $log_path ), apply_filters( 'themebeez-demo-importer/file_mimes', $log_mimes ) );
+		$filetype  = wp_check_filetype( basename( $log_path ), apply_filters( 'themebeez_toolkit_file_mimes', $log_mimes ) );
 
 		// Prepare an array of post data for the attachment.
 		$attachment = array(
 			'guid'           => self::get_log_url( $log_path ),
 			'post_mime_type' => $filetype['type'],
-			'post_title'     => apply_filters( 'themebeez-demo-importer/attachment_prefix', esc_html__( 'Themebeez Demo Import - ', 'themebeez-toolkit' ) ) . preg_replace( '/\.[^.]+$/', '', basename( $log_path ) ),
+			'post_title'     => apply_filters( 'themebeez_toolkit_attachment_prefix', esc_html__( 'Themebeez Demo Import - ', 'themebeez-toolkit' ) ) . preg_replace( '/\.[^.]+$/', '', basename( $log_path ) ),
 			'post_content'   => '',
 			'post_status'    => 'inherit',
 		);
@@ -459,7 +464,7 @@ class TT_Helpers {
 	public static function get_log_url( $log_path ) {
 
 		$upload_dir = wp_upload_dir();
-		$upload_url = apply_filters( 'themebeez-demo-importer/upload_file_url', trailingslashit( $upload_dir['url'] ) );
+		$upload_url = apply_filters( 'themebeez_toolkit_upload_file_url', trailingslashit( $upload_dir['url'] ) );
 
 		return $upload_url . basename( $log_path );
 	}
@@ -474,13 +479,7 @@ class TT_Helpers {
 
 		// Check if user has the WP capability to import data.
 		if ( ! current_user_can( 'import' ) ) {
-			wp_die(
-				sprintf(
-					__( '%sYour user role isn\'t high enough. You don\'t have permission to import demo data.%s', 'themebeez-toolkit' ),
-					'<div class="notice  notice-error"><p>',
-					'</p></div>'
-				)
-			);
+			wp_die( '<div class="notice  notice-error"><p>' . esc_html__( 'Your user role isn\'t high enough. You don\'t have permission to import demo data.', 'themebeez-toolkit' ) . '</p></div>' );
 		}
 	}
 
@@ -488,7 +487,7 @@ class TT_Helpers {
 	/**
 	 * Process uploaded files and return the paths to these files.
 	 *
-	 * @param array $uploaded_files $_FILES array form an AJAX request.
+	 * @param array  $uploaded_files $_FILES array form an AJAX request.
 	 * @param string $log_file_path path to the log file.
 	 *
 	 * @return array of paths to the content import and widget import files.
@@ -505,9 +504,9 @@ class TT_Helpers {
 		);
 
 		// Handle demo content and widgets file upload.
-		$content_file_info    = wp_handle_upload( $_FILES['content_file'], $upload_overrides );
-		$widget_file_info     = wp_handle_upload( $_FILES['widget_file'], $upload_overrides );
-		$customizer_file_info = wp_handle_upload( $_FILES['customizer_file'], $upload_overrides );
+		$content_file_info    = isset( $_FILES['content_file'] ) ? wp_handle_upload( $_FILES['content_file'], $upload_overrides ) : array(); // phpcs:ignore
+		$widget_file_info     = isset( $_FILES['widget_file'] ) ? wp_handle_upload( $_FILES['widget_file'], $upload_overrides ) : array(); // phpcs:ignore
+		$customizer_file_info = isset( $_FILES['customizer_file'] ) ? wp_handle_upload( $_FILES['customizer_file'], $upload_overrides ) : array(); // phpcs:ignore
 
 		if ( empty( $content_file_info['file'] ) || isset( $content_file_info['error'] ) ) {
 
@@ -532,6 +531,7 @@ class TT_Helpers {
 			// Add this error to log file.
 			$log_added = self::append_to_file(
 				sprintf(
+					/* Translators: %s: error */
 					__( 'Widget file was not uploaded. Error: %s', 'themebeez-toolkit' ),
 					$widget_file_info['error']
 				),
@@ -550,6 +550,7 @@ class TT_Helpers {
 			// Add this error to log file.
 			$log_added = self::append_to_file(
 				sprintf(
+					/* Translators: %s: error */
 					__( 'Customizer file was not uploaded. Error: %s', 'themebeez-toolkit' ),
 					$customizer_file_info['error']
 				),
@@ -577,18 +578,20 @@ class TT_Helpers {
 	 */
 	public static function import_file_info( $selected_import_files ) {
 		return PHP_EOL .
-		       sprintf(
-			       __( 'Initial max execution time = %s', 'themebeez-toolkit' ),
-			       ini_get( 'max_execution_time' )
-		       ) . PHP_EOL .
-		       sprintf(
-			       __( 'Files info:%1$sSite URL = %2$s%1$sData file = %3$s%1$sWidget file = %4$s%1$sCustomizer file = %5$s', 'themebeez-toolkit' ),
-			       PHP_EOL,
-			       get_site_url(),
-			       $selected_import_files['content'],
-			       empty( $selected_import_files['widgets'] ) ? esc_html__( 'not defined!', 'themebeez-toolkit' ) : $selected_import_files['widgets'],
-			       empty( $selected_import_files['customizer'] ) ? esc_html__( 'not defined!', 'themebeez-toolkit' ) : $selected_import_files['customizer']
-		       );
+			sprintf(
+				/* Translators: %s: max execution time */
+				__( 'Initial max execution time = %s', 'themebeez-toolkit' ),
+				ini_get( 'max_execution_time' )
+			) . PHP_EOL .
+			sprintf(
+				/* Translators: 1: php eol, 2: site url, 3: content, 4: widgets, 5: customizer */
+				__( 'Files info:%1$sSite URL = %2$s%1$sData file = %3$s%1$sWidget file = %4$s%1$sCustomizer file = %5$s', 'themebeez-toolkit' ),
+				PHP_EOL,
+				get_site_url(),
+				$selected_import_files['content'],
+				empty( $selected_import_files['widgets'] ) ? esc_html__( 'not defined!', 'themebeez-toolkit' ) : $selected_import_files['widgets'],
+				empty( $selected_import_files['customizer'] ) ? esc_html__( 'not defined!', 'themebeez-toolkit' ) : $selected_import_files['customizer']
+			);
 	}
 
 

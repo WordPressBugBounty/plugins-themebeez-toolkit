@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
@@ -103,33 +102,32 @@ class Themebeez_Toolkit {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-themebeez-toolkit-loader.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-themebeez-toolkit-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-themebeez-toolkit-i18n.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-themebeez-toolkit-i18n.php';
 
 		/**
 		 * The class responsible for defining theme information and necessary links.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/theme-info/class-theme-info.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/theme-info/class-themebeez-toolkit-theme-info.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-themebeez-toolkit-admin.php';
+		require_once plugin_dir_path( __DIR__ ) . 'admin/class-themebeez-toolkit-admin.php';
 
 		/**
 		 * Functions necessary for loading demo content and theme info.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions.php';
-
+		require_once plugin_dir_path( __DIR__ ) . 'includes/functions.php';
 		/**
-		 * Load vendor autoloader.
+		 * Initialize udp-aget..
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/autoload.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/udp/init.php';
 
 		$this->loader = new Themebeez_Toolkit_Loader();
 	}
@@ -147,7 +145,7 @@ class Themebeez_Toolkit {
 
 		$plugin_i18n = new Themebeez_Toolkit_i18n();
 
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+		$this->loader->add_action( 'init', $plugin_i18n, 'load_plugin_textdomain' );
 	}
 
 	/**
@@ -170,7 +168,7 @@ class Themebeez_Toolkit {
 		$plugin_admin = new Themebeez_Toolkit_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'register_dashboard_widget' );
 	}
 
 	/**
