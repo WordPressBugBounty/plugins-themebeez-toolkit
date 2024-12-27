@@ -42,7 +42,7 @@ if ( ! function_exists( 'themebeez_toolkit_orchid_store_config' ) ) {
 					'desc'       => esc_html__( 'Stuck due to an issue? Our detailed documentation will surely clear up any confusions you have!', 'themebeez-toolkit' ),
 					'icon'       => 'dashicons-media-document',
 					'link_title' => esc_html__( 'Read Now', 'themebeez-toolkit' ),
-					'link_url'   => 'https://themebeez.com/docs/orchid-store-pro-documentation/',
+					'link_url'   => 'https://themebeez.com/docs/orchid-store-theme-documentation/',
 					'link_class' => 'button tt-button button-secondary',
 				),
 				'theme_support_url'   => array(
@@ -50,7 +50,7 @@ if ( ! function_exists( 'themebeez_toolkit_orchid_store_config' ) ) {
 					'desc'       => esc_html__( 'Get in touch with our support team. You can always submit a support ticket for help.', 'themebeez-toolkit' ),
 					'icon'       => 'dashicons-megaphone',
 					'link_title' => esc_html__( 'Create Post', 'themebeez-toolkit' ),
-					'link_url'   => 'https://themebeez.com/support-forum/orchid-store-pro-support/',
+					'link_url'   => 'https://themebeez.com/support-forum/orchid-store-free-theme-support/',
 					'link_class' => 'button tt-button button-secondary',
 				),
 				'feature_request_url' => array(
@@ -58,7 +58,7 @@ if ( ! function_exists( 'themebeez_toolkit_orchid_store_config' ) ) {
 					'desc'       => esc_html__( 'Please take a moment to suggest any features that could enhance our product.', 'themebeez-toolkit' ),
 					'icon'       => 'dashicons-marker',
 					'link_title' => esc_html__( 'Make a request', 'themebeez-toolkit' ),
-					'link_url'   => 'https://github.com/themebeez/orchid-store-pro/issues',
+					'link_url'   => 'https://github.com/themebeez/orchid-store/issues',
 					'link_class' => 'button tt-button button-secondary',
 				),
 				'rate_review_url'     => array(

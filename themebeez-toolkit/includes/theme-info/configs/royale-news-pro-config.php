@@ -26,7 +26,7 @@ if ( ! function_exists( 'themebeez_toolkit_royale_news_pro_config' ) ) {
 					'desc'       => esc_html__( 'Stuck due to an issue? Our detailed documentation will surely clear up any confusions you have!', 'themebeez-toolkit' ),
 					'icon'       => 'dashicons-media-document',
 					'link_title' => esc_html__( 'Read Now', 'themebeez-toolkit' ),
-					'link_url'   => 'https://themebeez.com/docs/royale-news-pro-documentation/',
+					'link_url'   => 'https://themebeez.com/docs/royale-news-documentation/',
 					'link_class' => 'button tt-button button-secondary',
 				),
 				'theme_support_url'   => array(

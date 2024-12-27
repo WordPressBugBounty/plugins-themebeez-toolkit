@@ -50,7 +50,7 @@ if ( ! function_exists( 'themebeez_toolkit_fascinate_config' ) ) {
 					'desc'       => esc_html__( 'Get in touch with our support team. You can always submit a support ticket for help.', 'themebeez-toolkit' ),
 					'icon'       => 'dashicons-megaphone',
 					'link_title' => esc_html__( 'Create Post', 'themebeez-toolkit' ),
-					'link_url'   => 'https://themebeez.com/support-forum/',
+					'link_url'   => 'https://themebeez.com/support-forum/fascinate-free-theme-support/',
 					'link_class' => 'button tt-button button-secondary',
 				),
 				'feature_request_url' => array(
