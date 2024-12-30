@@ -1060,7 +1060,7 @@ class TT_Importer_WXR_Importer {
 
 		$this->logger->info(
 			sprintf(
-				/* Translators: 1: post title, 2: post object level singlular name */
+				/* translators: 1: post title, 2: post type singular name */
 				__( 'Imported "%1$s" (%2$s)', 'themebeez-toolkit' ),
 				$data['post_title'],
 				$post_type_object->labels->singular_name
@@ -1069,7 +1069,7 @@ class TT_Importer_WXR_Importer {
 
 		$this->logger->debug(
 			sprintf(
-				/* Translators: 1: original id, 2: post id */
+				/* translators: 1: original id, 2: post id */
 				__( 'Post %1$d remapped to %2$d', 'themebeez-toolkit' ),
 				$original_id,
 				$post_id
@@ -1958,7 +1958,7 @@ class TT_Importer_WXR_Importer {
 
 		$this->logger->info(
 			sprintf(
-				/* Translators: 1: term name, 2: term taxonomy  */
+				/* translators: 1: term name, 2: term taxonomy  */
 				__( 'Imported "%1$s" (%2$s)', 'themebeez-toolkit' ),
 				$data['name'],
 				$data['taxonomy']
@@ -1967,7 +1967,7 @@ class TT_Importer_WXR_Importer {
 
 		$this->logger->debug(
 			sprintf(
-				/* Translators: 1: term taxonomy, 2: term name */
+				/* translators: 1: term taxonomy, 2: term name */
 				__( 'Term %1$d remapped to %2$d', 'themebeez-toolkit' ),
 				$original_id,
 				$term_id

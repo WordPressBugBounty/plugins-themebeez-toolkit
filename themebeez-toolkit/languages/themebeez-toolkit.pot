@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Themebeez Toolkit 1.3\n"
+"Project-Id-Version: Themebeez Toolkit 1.3.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/themebeez-toolkit\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-25T11:40:23+00:00\n"
+"POT-Creation-Date: 2024-12-30T17:12:19+05:45\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: themebeez-toolkit\n"
@@ -171,162 +171,156 @@ msgstr ""
 msgid "%1$sWarning: your server is using %2$sPHP safe mode%3$s. This means that you might experience server timeout errors.%4$s"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:177
-#: includes/demo-importer/class-tt-main.php:199
+#: includes/demo-importer/class-tt-main.php:174
+#: includes/demo-importer/class-tt-main.php:196
 msgid "Live Preview"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:180
+#: includes/demo-importer/class-tt-main.php:177
 msgid "By Themebeez"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:186
+#: includes/demo-importer/class-tt-main.php:183
 #: includes/demo-importer/importer/class-tt-importer-widget.php:240
 msgid "Imported"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:197
+#: includes/demo-importer/class-tt-main.php:194
 msgid "Import Demo"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:227
+#: includes/demo-importer/class-tt-main.php:224
 msgid "Import preview:"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:231
-#: includes/demo-importer/class-tt-main.php:328
+#: includes/demo-importer/class-tt-main.php:228
+#: includes/demo-importer/class-tt-main.php:356
 msgid "No preview image defined for this import."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:250
+#: includes/demo-importer/class-tt-main.php:247
+#: includes/demo-importer/class-tt-main.php:303
 msgid "Note"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:252
+#: includes/demo-importer/class-tt-main.php:249
 msgid "Please follow the instructions carefully to import demo content for your site."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:254
-msgid "Theme installed with correct theme folder name:"
-msgstr ""
-
-#: includes/demo-importer/class-tt-main.php:254
-msgid "Make sure theme is installed with correct theme folder name inside"
-msgstr ""
-
-#: includes/demo-importer/class-tt-main.php:254
-msgid "folder."
-msgstr ""
-
+#. translators: 1: strong opening tag, 2: strong closing tag, 3: theme folder path, 4: theme name, 5: theme folder name
 #: includes/demo-importer/class-tt-main.php:255
+msgid "%1$sTheme installed with correct theme folder name:%2$s Make sure theme is installed with correct theme folder name inside %3$s. For example, %4$s theme should have %5$s theme folder name."
+msgstr ""
+
+#: includes/demo-importer/class-tt-main.php:263
 msgid "Your current site data will not be overwritten:"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:255
+#: includes/demo-importer/class-tt-main.php:263
 msgid "Importing demo content will not replace existing data with demo content. Take a backup of your site if necessary."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:256
+#: includes/demo-importer/class-tt-main.php:264
 msgid "Your server meets the requirements:"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:256
+#: includes/demo-importer/class-tt-main.php:264
 msgid "Check server settings like PHP version, memory limit, and execution time to avoid interruptions during the import process."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:257
+#: includes/demo-importer/class-tt-main.php:265
 msgid "You have sufficient resources:"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:257
+#: includes/demo-importer/class-tt-main.php:265
 msgid "Demo content may include large files, so ensure adequate disk space and bandwidth."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:258
+#: includes/demo-importer/class-tt-main.php:266
 msgid "All required plugins are installed and activated:"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:258
+#: includes/demo-importer/class-tt-main.php:266
 msgid "The demo may depend on certain plugins for functionality."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:266
+#: includes/demo-importer/class-tt-main.php:274
 msgid "Probable Issues and Troubleshooting"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:269
+#: includes/demo-importer/class-tt-main.php:277
 msgid "Incomplete Import:"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:269
+#: includes/demo-importer/class-tt-main.php:277
 msgid "Limited memory or execution time on the server."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:270
+#: includes/demo-importer/class-tt-main.php:278
 msgid "Fix: Increase PHP memory limit and max execution time in the server configuration."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:271
+#: includes/demo-importer/class-tt-main.php:279
 msgid "Missing Images or Media Files:"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:271
+#: includes/demo-importer/class-tt-main.php:279
 msgid "Demo content relies on remote servers for media; server timeouts can occur."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:272
+#: includes/demo-importer/class-tt-main.php:280
 msgid "Fix: Retry the import or manually upload missing media files."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:273
+#: includes/demo-importer/class-tt-main.php:281
 msgid "Page Layout Issues:"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:273
+#: includes/demo-importer/class-tt-main.php:281
 msgid "Missing or deactivated plugins or mismatched theme versions."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:274
+#: includes/demo-importer/class-tt-main.php:282
 msgid "Fix: Verify all required plugins are active, and you&rsquo;re using the correct theme version."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:275
+#: includes/demo-importer/class-tt-main.php:283
 msgid "Broken Links or Missing Menus:"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:275
+#: includes/demo-importer/class-tt-main.php:283
 msgid "URL mismatches or incorrect menu assignment during import."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:276
+#: includes/demo-importer/class-tt-main.php:284
 msgid "Fix: Manually assign menus and update URLs in the settings or database."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:277
+#: includes/demo-importer/class-tt-main.php:285
 msgid "Timeout Errors:"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:277
+#: includes/demo-importer/class-tt-main.php:285
 msgid "Large import files exceeding server limits."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:278
+#: includes/demo-importer/class-tt-main.php:286
 msgid "Fix: Import demo content in smaller parts, or increase server limits."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:279
+#: includes/demo-importer/class-tt-main.php:287
 msgid "Duplicate Content:"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:279
+#: includes/demo-importer/class-tt-main.php:287
 msgid "Repeated demo imports."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:280
+#: includes/demo-importer/class-tt-main.php:288
 msgid "Fix: Remove existing demo content before re-importing."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:285
+#: includes/demo-importer/class-tt-main.php:293
 #: includes/theme-info/configs/cream-blog-config.php:49
 #: includes/theme-info/configs/cream-blog-pro-config.php:33
 #: includes/theme-info/configs/cream-magazine-config.php:48
@@ -340,60 +334,65 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:287
+#: includes/demo-importer/class-tt-main.php:295
 msgid "If you encounter any issues not listed above, please reach out to our support team for assistance."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:384
+#. translators: 1: theme folder path, 2: theme name, 3: theme folder name
+#: includes/demo-importer/class-tt-main.php:309
+msgid "If you are not seeing any starter templates, then make sure theme is installed with correct theme folder name inside %1$s. For example, %2$s theme should have %3$s theme folder name."
+msgstr ""
+
+#: includes/demo-importer/class-tt-main.php:412
 msgid "Manually uploaded files"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:400
-#: includes/demo-importer/class-tt-main.php:412
+#: includes/demo-importer/class-tt-main.php:428
+#: includes/demo-importer/class-tt-main.php:440
 msgid "Downloaded files"
 msgstr ""
 
 #. translators: %s: import files
-#: includes/demo-importer/class-tt-main.php:408
+#: includes/demo-importer/class-tt-main.php:436
 msgid "The import files for: %s were successfully downloaded!"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:416
+#: includes/demo-importer/class-tt-main.php:444
 msgid "No import files specified!"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:459
+#: includes/demo-importer/class-tt-main.php:487
 msgid "The demo import has finished. Please check your page and make sure that everything has imported correctly."
 msgstr ""
 
 #. translators: 1: br tag, 2: strong open tag, 3: anchor open tag, 4: anchor close tag, 5: strong close tag
-#: includes/demo-importer/class-tt-main.php:464
+#: includes/demo-importer/class-tt-main.php:492
 msgid "The demo import has finished, but there were some import errors.%1$s More details about the errors can be found in this %2$s %3$slog file%4$s %5$s."
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:517
+#: includes/demo-importer/class-tt-main.php:545
 msgid "Max execution time after content import = "
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:519
+#: includes/demo-importer/class-tt-main.php:547
 msgid "Importing content"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:558
-#: includes/demo-importer/class-tt-main.php:570
+#: includes/demo-importer/class-tt-main.php:586
+#: includes/demo-importer/class-tt-main.php:598
 msgid "Importing widgets"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:592
-#: includes/demo-importer/class-tt-main.php:600
+#: includes/demo-importer/class-tt-main.php:620
+#: includes/demo-importer/class-tt-main.php:628
 msgid "Importing customizer settings"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:598
+#: includes/demo-importer/class-tt-main.php:626
 msgid "Customizer settings import finished!"
 msgstr ""
 
-#: includes/demo-importer/class-tt-main.php:652
+#: includes/demo-importer/class-tt-main.php:680
 msgid "Completed AJAX call number: "
 msgstr ""
 
@@ -485,14 +484,14 @@ msgstr ""
 msgid "Failed to import \"%1$s\" (%2$s)"
 msgstr ""
 
-#. Translators: 1: post title, 2: post object level singlular name
-#. Translators: 1: term name, 2: term taxonomy
+#. translators: 1: post title, 2: post type singular name
+#. translators: 1: term name, 2: term taxonomy
 #: includes/demo-importer/importer/class-tt-importer-wxr-importer.php:1064
 #: includes/demo-importer/importer/class-tt-importer-wxr-importer.php:1962
 msgid "Imported \"%1$s\" (%2$s)"
 msgstr ""
 
-#. Translators: 1: original id, 2: post id
+#. translators: 1: original id, 2: post id
 #: includes/demo-importer/importer/class-tt-importer-wxr-importer.php:1073
 msgid "Post %1$d remapped to %2$d"
 msgstr ""
@@ -521,7 +520,7 @@ msgstr ""
 msgid "Failed to import %1$s %2$s"
 msgstr ""
 
-#. Translators: 1: term taxonomy, 2: term name
+#. translators: 1: term taxonomy, 2: term name
 #: includes/demo-importer/importer/class-tt-importer-wxr-importer.php:1971
 msgid "Term %1$d remapped to %2$d"
 msgstr ""
@@ -791,21 +790,23 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:177
+#. translators: 1: theme name, 2: theme page anchor opening tag, 3: anchor closing tag
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:179
 msgid "Welcome! Thank you for choosing %1$s! To fully take advantage of the best our theme can offer please make sure you visit our %2$swelcome page%3$s."
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:177
+#. translators: 1: theme name
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:185
 msgid "Get started with %s"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:214
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:215
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:224
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:225
 msgid "Theme Dashboard"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:223
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:224
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:233
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:234
 #: includes/theme-info/configs/cream-blog-config.php:76
 #: includes/theme-info/configs/cream-blog-pro-config.php:52
 #: includes/theme-info/configs/cream-magazine-config.php:75
@@ -819,8 +820,8 @@ msgstr ""
 msgid "Starter Templates"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:232
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:233
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:242
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:243
 #: includes/theme-info/configs/cream-blog-config.php:77
 #: includes/theme-info/configs/cream-blog-pro-config.php:53
 #: includes/theme-info/configs/cream-magazine-config.php:76
@@ -834,74 +835,74 @@ msgstr ""
 msgid "Plugins"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:360
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:370
 msgid "Themebeez Logo"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:361
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:371
 msgid "Themebeez"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:369
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:379
 msgid "Changelog link"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:390
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:400
 msgid "Hello! 👋"
 msgstr ""
 
 #. translators: 1: username.
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:395
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:405
 msgid "Hello, %s 👋"
 msgstr ""
 
 #. translators: 1: theme name.
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:403
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:413
 msgid "Welcome to %s"
 msgstr ""
 
 #. translators: 1: theme name.
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:409
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:419
 msgid "Thank you for choosing %s. Let&rsquo;s get your site up and running quickly."
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:419
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:429
 msgid "Start Customizing"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:624
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:634
 msgid "Quick Settings"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:625
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:635
 msgid "Premium Features"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:630
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:640
 msgid "Go To Customizer"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:630
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:640
 msgid "Upgrade Now"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:680
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:690
 msgid "Pro"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:786
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:796
 msgid "Install Now"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:790
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:800
 msgid "Activate Now"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:794
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:804
 msgid "Deactivate"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:898
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:908
 #: includes/theme-info/configs/cream-blog-config.php:33
 #: includes/theme-info/configs/cream-magazine-config.php:32
 #: includes/theme-info/configs/fascinate-config.php:33
@@ -910,11 +911,11 @@ msgstr ""
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:986
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:996
 msgid "Changelog file not found."
 msgstr ""
 
-#: includes/theme-info/class-themebeez-toolkit-theme-info.php:988
+#: includes/theme-info/class-themebeez-toolkit-theme-info.php:998
 msgid "Changelog file not readable."
 msgstr ""
 

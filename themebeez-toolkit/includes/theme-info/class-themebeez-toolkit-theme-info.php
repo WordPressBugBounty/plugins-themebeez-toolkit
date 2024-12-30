@@ -174,7 +174,17 @@ if ( ! class_exists( 'Themebeez_Toolkit_Theme_Info' ) ) {
 
 			$themepage_url = admin_url( 'themes.php?page=' . $this->page_slug );
 
-			$this->notification = isset( $this->config['notification'] ) ? $this->config['notification'] : ( '<p>' . sprintf( esc_html__( 'Welcome! Thank you for choosing %1$s! To fully take advantage of the best our theme can offer please make sure you visit our %2$swelcome page%3$s.', 'themebeez-toolkit' ), $this->theme_name, '<a href="' . esc_url( $themepage_url ) . '">', '</a>' ) . '</p><p><a href="' . esc_url( $themepage_url ) . '" class="button button-primary" style="text-decoration: none;">' . sprintf( esc_html__( 'Get started with %s', 'themebeez-toolkit' ), $this->theme_name ) . '</a></p>' ); // phpcs:ignore
+			$this->notification = isset( $this->config['notification'] ) ? $this->config['notification'] : ( '<p>' . sprintf(
+				/* translators: 1: theme name, 2: theme page anchor opening tag, 3: anchor closing tag */
+				esc_html__( 'Welcome! Thank you for choosing %1$s! To fully take advantage of the best our theme can offer please make sure you visit our %2$swelcome page%3$s.', 'themebeez-toolkit' ),
+				$this->theme_name,
+				'<a href="' . esc_url( $themepage_url ) . '">',
+				'</a>'
+			) . '</p><p><a href="' . esc_url( $themepage_url ) . '" class="button button-primary" style="text-decoration: none;">' . sprintf(
+				/* translators: 1: theme name */
+				esc_html__( 'Get started with %s', 'themebeez-toolkit' ),
+				$this->theme_name
+			) . '</a></p>' ); // phpcs:ignore
 		}
 
 		/**

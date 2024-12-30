@@ -144,12 +144,9 @@ class TT_Main {
 					'</p></div>'
 				);
 			}
-			?>
 
-			<?php
-			if ( is_array( $this->import_files ) && 0 < count( $this->import_files ) ) :
+			if ( is_array( $this->import_files ) && 0 < count( $this->import_files ) ) {
 				?>
-				
 
 				<div class="TT__multi-select-import">
 					<div class="theme-browser rendered">
@@ -251,7 +248,18 @@ class TT_Main {
 					</h2>
 					<p><?php echo esc_html__( 'Please follow the instructions carefully to import demo content for your site.', 'themebeez-toolkit' ); ?></p>
 					<ul>
-						<li><strong><?php echo esc_html__( 'Theme installed with correct theme folder name:', 'themebeez-toolkit' ); ?></strong> <?php echo esc_html__( 'Make sure theme is installed with correct theme folder name inside', 'themebeez-toolkit' ); ?> <code>/wp-content/themes/</code> <?php echo esc_html__( 'folder.', 'themebeez-toolkit' ); ?></li>
+						<li>
+							<?php
+							printf(
+								/* translators: 1: strong opening tag, 2: strong closing tag, 3: theme folder path, 4: theme name, 5: theme folder name */
+								esc_html__( '%1$sTheme installed with correct theme folder name:%2$s Make sure theme is installed with correct theme folder name inside %3$s. For example, %4$s theme should have %5$s theme folder name.', 'themebeez-toolkit' ),
+								'<strong>',
+								'</strong>',
+								'<code>/wp-content/themes/</code>',
+								'<code>Cream Magazine Pro</code>',
+								'<code>cream-magazine-pro</code>'
+							);
+							?>
 						<li><strong><?php echo esc_html__( 'Your current site data will not be overwritten:', 'themebeez-toolkit' ); ?></strong> <?php echo esc_html__( 'Importing demo content will not replace existing data with demo content. Take a backup of your site if necessary.', 'themebeez-toolkit' ); ?></li>
 						<li><strong><?php echo esc_html__( 'Your server meets the requirements:', 'themebeez-toolkit' ); ?></strong> <?php echo esc_html__( 'Check server settings like PHP version, memory limit, and execution time to avoid interruptions during the import process.', 'themebeez-toolkit' ); ?></li>
 						<li><strong><?php echo esc_html__( 'You have sufficient resources:', 'themebeez-toolkit' ); ?></strong> <?php echo esc_html__( 'Demo content may include large files, so ensure adequate disk space and bandwidth.', 'themebeez-toolkit' ); ?></li>
@@ -287,7 +295,27 @@ class TT_Main {
 					<p><?php echo esc_html__( 'If you encounter any issues not listed above, please reach out to our support team for assistance.', 'themebeez-toolkit' ); ?></p>
 				</div>
 				<?php
-			endif;
+			} else {
+				?>
+				<div class="tt-demo-importer-notice tt-demo-importer-note" style="margin-top: 0;">
+					<h2 class="tt-demo-importer-notice-heading">
+						<span class="dashicons dashicons-bell tt-demo-importer-notice-icon"></span>
+						<?php echo esc_html__( 'Note', 'themebeez-toolkit' ); ?>
+					</h2>
+					<p>
+						<?php
+						printf(
+							/* translators: 1: theme folder path, 2: theme name, 3: theme folder name */
+							esc_html__( 'If you are not seeing any starter templates, then make sure theme is installed with correct theme folder name inside %1$s. For example, %2$s theme should have %3$s theme folder name.', 'themebeez-toolkit' ),
+							'<code>/wp-content/themes/</code>',
+							'<code>Cream Magazine Pro</code>',
+							'<code>cream-magazine-pro</code>'
+						);
+						?>
+					</p>
+				</div>
+				<?php
+			}
 			?>
 		</div>
 		<?php
