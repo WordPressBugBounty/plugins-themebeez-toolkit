@@ -93,29 +93,6 @@ if ( ! function_exists( 'themebeez_toolkit_theme_info_demo_loader' ) ) {
 		}
 
 		require_once plugin_dir_path( __FILE__ ) . 'theme-info/configs/' . $theme_text_domain . '-config.php';
-
-		if (
-			'orchid-store' === $theme_text_domain ||
-			themebeez_toolkit_template_name() === 'orchid-store'
-		) {
-
-			require_once plugin_dir_path( __FILE__ ) . 'simple-mega-menu/class-simple-mega-menu-walker-filter.php';
-
-			require_once plugin_dir_path( __FILE__ ) . 'simple-mega-menu/class-simple-mega-menu-nav-walker.php';
-
-			add_filter(
-				'wp_nav_menu_args',
-				function ( $args ) {
-
-					return array_merge(
-						$args,
-						array(
-							'walker' => new Simple_Mega_Menu_Nav_Walker(),
-						)
-					);
-				}
-			);
-		}
 	}
 }
 

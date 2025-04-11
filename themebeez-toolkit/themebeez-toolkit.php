@@ -3,10 +3,10 @@
  * Plugin Name:       Themebeez Toolkit
  * Plugin URI:        https://wordpress.org/plugins/themebeez-toolkit/
  * Description:       A essential toolkit for themes made by www.themebeez.com. This plugin extends themes made by themebeez & adds functionality to import demo data in just a click.
- * Version:           1.3.2
+ * Version:           1.3.3
  * Requires at least: 5.6
  * Requires PHP:      7.4
- * Tested up to:      6.7.1
+ * Tested up to:      6.7.2
  * Author:            themebeez
  * Author URI:        https://themebeez.com
  * License:           GPL-2.0+
@@ -27,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'THEMEBEEZTOOLKIT_VERSION', '1.3.2' );
+define( 'THEMEBEEZTOOLKIT_VERSION', '1.3.3' );
 
 // Define THEMEBEEZTOOLKIT_PLUGIN_FILE.
 if ( ! defined( 'THEMEBEEZTOOLKIT_PLUGIN_FILE' ) ) {
@@ -105,7 +105,11 @@ $theme = themebeez_toolkit_theme();
 
 $themes = themebeez_toolkit_theme_array();
 
-if ( $theme->get( 'Author' ) === 'themebeez' && in_array( $theme->get( 'TextDomain' ), $themes, true ) ) {
+
+if (
+	$theme->get( 'Author' ) === 'themebeez' &&
+	( in_array( $theme->get( 'TextDomain' ), $themes, true ) || in_array( themebeez_toolkit_template_name(), $themes, true ) )
+) {
 
 	// Global for backwards compatibility.
 	$GLOBALS['themebeez-demo-importer'] = themebeez_demo_importer_init();
