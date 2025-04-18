@@ -97,3 +97,41 @@ if ( ! function_exists( 'themebeez_toolkit_theme_info_demo_loader' ) ) {
 }
 
 add_action( 'themebeez_toolkit_load_theme_info_demo', 'themebeez_toolkit_theme_info_demo_loader' );
+
+
+if ( ! function_exists( 'themebeez_toolkit_init_simple_mega_menu' ) ) {
+	/**
+	 * Initialize simple mega menu for Orchid Store theme and its child themes.
+	 * 
+	 * @since 1.0.0
+	 */
+	function themebeez_toolkit_init_simple_mega_menu() {
+
+		$current_active_theme = wp_get_theme();
+
+		if (
+			'orchid-store' === $current_active_theme->get( 'TextDomain' ) ||
+			'orchid-store' === $current_active_theme->get( 'Template' )
+		) {
+
+			require_once plugin_dir_path( __FILE__ ) . 'simple-mega-menu/class-simple-mega-menu-walker-filter.php';
+
+			require_once plugin_dir_path( __FILE__ ) . 'simple-mega-menu/class-simple-mega-menu-nav-walker.php';
+
+			add_filter(
+				'wp_nav_menu_args',
+				function ( $args ) {
+
+					return array_merge(
+						$args,
+						array(
+							'walker' => new Simple_Mega_Menu_Nav_Walker(),
+						)
+					);
+				}
+			);
+		}
+	}
+
+	add_action( 'init', 'themebeez_toolkit_init_simple_mega_menu' );
+}

@@ -4,8 +4,8 @@ Contributors: themebeez
 Tags: themebeez, demo, content, widgets, menus, import, content, demo, data, widgets, settings, themes
 Requires at least: 5.6
 Requires PHP: 7.4
-Tested up to: 6.7.2
-Stable tag: 1.3.3
+Tested up to: 6.8
+Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -85,6 +85,9 @@ Follow the instruction below to install this plugin:
 
 
 == Changelog ==
+
+= 1.3.4 - 18 April, 2025 =
+- Fixed:   PHP Notice:  Function _load_textdomain_just_in_time was called icorrectly.
 
 = 1.3.3 - 11 April, 2025 =
 - Updated: Simple mega menu support for child theme for Orchid Store.

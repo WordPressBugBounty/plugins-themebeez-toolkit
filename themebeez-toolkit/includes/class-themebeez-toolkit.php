@@ -169,31 +169,6 @@ class Themebeez_Toolkit {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'register_dashboard_widget' );
-
-		$current_active_theme = wp_get_theme();
-
-		if (
-			'orchid-store' === $current_active_theme->get( 'TextDomain' ) ||
-			'orchid-store' === $current_active_theme->get( 'Template' )
-		) {
-
-			require_once plugin_dir_path( __FILE__ ) . 'simple-mega-menu/class-simple-mega-menu-walker-filter.php';
-
-			require_once plugin_dir_path( __FILE__ ) . 'simple-mega-menu/class-simple-mega-menu-nav-walker.php';
-
-			add_filter(
-				'wp_nav_menu_args',
-				function ( $args ) {
-
-					return array_merge(
-						$args,
-						array(
-							'walker' => new Simple_Mega_Menu_Nav_Walker(),
-						)
-					);
-				}
-			);
-		}
 	}
 
 	/**
