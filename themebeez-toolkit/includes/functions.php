@@ -102,7 +102,7 @@ add_action( 'themebeez_toolkit_load_theme_info_demo', 'themebeez_toolkit_theme_i
 if ( ! function_exists( 'themebeez_toolkit_init_simple_mega_menu' ) ) {
 	/**
 	 * Initialize simple mega menu for Orchid Store theme and its child themes.
-	 * 
+	 *
 	 * @since 1.0.0
 	 */
 	function themebeez_toolkit_init_simple_mega_menu() {

@@ -5,7 +5,7 @@ Tags: themebeez, demo, content, widgets, menus, import, content, demo, data, wid
 Requires at least: 5.6
 Requires PHP: 7.4
 Tested up to: 6.8
-Stable tag: 1.3.4
+Stable tag: 1.3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -85,6 +85,8 @@ Follow the instruction below to install this plugin:
 
 
 == Changelog ==
+= 1.3.5 - 23 April, 2025 =
+- Fixed: Theme info and demo importer issues with deprecated themes.
 
 = 1.3.4 - 18 April, 2025 =
 - Fixed:   PHP Notice:  Function _load_textdomain_just_in_time was called icorrectly.

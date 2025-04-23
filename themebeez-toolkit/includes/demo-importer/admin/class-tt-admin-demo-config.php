@@ -76,18 +76,9 @@ class TT_Admin_Demo_Config {
 	private function supported_themes() {
 
 		return array(
-
 			'royale_news'        => array(
 				'theme_name' => 'Royale News',
 				'demo_class' => 'TT_Theme_Demo_Royale_News',
-			),
-			'style_blog'         => array(
-				'theme_name' => 'StyleBlog',
-				'demo_class' => 'TT_Theme_Demo_Style_Blog',
-			),
-			'style_blog_fame'    => array(
-				'theme_name' => 'Style Blog Fame',
-				'demo_class' => 'TT_Theme_Demo_Style_Blog_Fame',
 			),
 			'cream_blog'         => array(
 				'theme_name' => 'Cream Blog',
@@ -108,14 +99,6 @@ class TT_Admin_Demo_Config {
 			'cream_magazine_pro' => array(
 				'theme_name' => 'Cream Magazine Pro',
 				'demo_class' => 'TT_Theme_Demo_Cream_Magazine_Pro',
-			),
-			'royale_news_lite'   => array(
-				'theme_name' => 'Royale News Lite',
-				'demo_class' => 'TT_Theme_Demo_Royale_News_Lite',
-			),
-			'cream_blog_lite'    => array(
-				'theme_name' => 'Cream Blog Lite',
-				'demo_class' => 'TT_Theme_Demo_Cream_Blog_Lite',
 			),
 			'cream_blog_pro'     => array(
 				'theme_name' => 'Cream Blog Pro',

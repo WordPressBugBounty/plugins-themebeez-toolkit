@@ -213,36 +213,36 @@ if ( ! class_exists( 'Themebeez_Toolkit_Theme_Info' ) ) {
 				$this->theme_name,
 				$this->theme_name,
 				'manage_options',
-				$this->theme_slug,
+				$this->theme_textdomain,
 				array( $this, 'render_about_page' ),
 				'dashicons-art',
 				30
 			);
 
 			add_submenu_page(
-				$this->theme_slug,
+				$this->theme_textdomain,
 				esc_html__( 'Theme Dashboard', 'themebeez-toolkit' ),
 				esc_html__( 'Theme Dashboard', 'themebeez-toolkit' ),
 				'manage_options',
-				$this->theme_slug,
+				$this->theme_textdomain,
 				array( $this, 'render_about_page' ),
 			);
 
 			add_submenu_page(
-				$this->theme_slug,
+				$this->theme_textdomain,
 				esc_html__( 'Starter Templates', 'themebeez-toolkit' ),
 				esc_html__( 'Starter Templates', 'themebeez-toolkit' ),
 				'manage_options',
-				$this->theme_slug . '&tab=starter_templates',
+				$this->theme_textdomain . '&tab=starter_templates',
 				array( $this, 'render_about_page' ),
 			);
 
 			add_submenu_page(
-				$this->theme_slug,
+				$this->theme_textdomain,
 				esc_html__( 'Plugins', 'themebeez-toolkit' ),
 				esc_html__( 'Plugins', 'themebeez-toolkit' ),
 				'manage_options',
-				$this->theme_slug . '&tab=plugins',
+				$this->theme_textdomain . '&tab=plugins',
 				array( $this, 'render_about_page' ),
 			);
 		}
@@ -472,7 +472,7 @@ if ( ! class_exists( 'Themebeez_Toolkit_Theme_Info' ) ) {
 							}
 						}
 
-						echo '<a href="' . esc_url( admin_url( 'admin.php?page=' . $this->theme_slug ) ) . '&tab=' . esc_attr( $tab_key ) . '" class="tt-nav-tab ' . ( $active_tab === $tab_key ? 'active' : '' ) . '" role="tab" data-toggle="tab">';
+						echo '<a href="' . esc_url( admin_url( 'admin.php?page=' . $this->theme_textdomain ) ) . '&tab=' . esc_attr( $tab_key ) . '" class="tt-nav-tab ' . ( $active_tab === $tab_key ? 'active' : '' ) . '" role="tab" data-toggle="tab">';
 
 						if ( 'upgrade_to_pro' === $tab_key ) {
 							echo '<span class="dashicons dashicons-star-filled"></span>';
@@ -552,7 +552,7 @@ if ( ! class_exists( 'Themebeez_Toolkit_Theme_Info' ) ) {
 
 			if (
 				'admin.php' === $pagenow &&
-				( isset( $_GET['page'] ) && $this->theme_slug === $_GET['page'] ) // phpcs:ignore
+				( isset( $_GET['page'] ) && $this->theme_textdomain === $_GET['page'] ) // phpcs:ignore
 			) {
 
 				wp_enqueue_style( 'plugin-install' );
